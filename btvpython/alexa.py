@@ -7,6 +7,23 @@ import urllib2
 
 MEETUP_ENDPOINT = 'https://api.meetup.com/{group}/events?sign=false&key={key}&photo-host=public&page=1'
 
+ASK_RESPONSE = {
+    'sessionAttributes': {},
+    'response': {
+        'outputSpeech': {
+            'type': 'PlainText',
+            'text': ''
+        },
+        'card': {
+            'type': 'Simple',
+            'title': 'BTV Python',
+            'content': ''
+        }
+    },
+    'shouldEndSession': True
+}
+
+
 def get_next_meetup(group_name):
     """
     Lookup the next Meetup event for a group.
@@ -24,10 +41,30 @@ def get_next_meetup(group_name):
     return meetup
 
 
-def lambda_handler(event, context):
+def handle_intent():
+    """
+    Right now we'll just handle all intents as a request for the next meeting
+    :return: message String
+    """
     msg = 'The next Burlington Python meetup is "{title}" on {date} at {venue}'
     meetup = get_next_meetup('btvpython')
     if meetup:
         return msg.format(**meetup)
     else:
         return 'Sorry, I could not find an upcoming event for Burlington Python.'
+
+
+def lambda_handler(event, context):
+    """
+
+    :param event:
+    :param context:
+    :return:
+    """
+    output = ASK_RESPONSE.copy()
+    message = handle_intent()
+    output['response']['outputSpeech']['text'] = message
+    output['response']['card']['content'] = message
+
+    return json.dumps(output)
+
