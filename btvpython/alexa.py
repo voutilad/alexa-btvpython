@@ -8,6 +8,7 @@ import urllib2
 MEETUP_ENDPOINT = 'https://api.meetup.com/{group}/events?sign=false&key={key}&photo-host=public&page=1'
 
 ASK_RESPONSE = {
+    'version': 1.0,
     'sessionAttributes': {},
     'response': {
         'outputSpeech': {
@@ -61,10 +62,15 @@ def lambda_handler(event, context):
     :param context:
     :return:
     """
+    if 'DEBUG_LAMBDA' in os.environ:
+        print 'event: ' + str(event)
+        print 'context: ' + str(context)
+
+
     output = ASK_RESPONSE.copy()
     message = handle_intent()
     output['response']['outputSpeech']['text'] = message
     output['response']['card']['content'] = message
 
-    return json.dumps(output)
+    return output
 

@@ -40,7 +40,8 @@ def setup_module(module):
 
 def test_lambda_handler_returns_ask_json():
     response = alexa.lambda_handler(None, None)
-    assert json.loads(response)['response']
+    assert 'response' in response
+    assert json.dumps(response)
 
 
 def test_intent_handler():
