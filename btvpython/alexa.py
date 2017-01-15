@@ -1,6 +1,7 @@
 """
 Our Alexa Skill for BTVPython
 """
+from datetime import datetime
 import os
 import json
 import urllib2
@@ -25,6 +26,17 @@ ASK_RESPONSE = {
 }
 
 
+def _convert_meetup_datetime(meetup_datetime):
+    """
+    convert the Meetup epoch datetime to a speakable version for Alexa
+    :param meetup_datetime: epoch-based datetime
+    :return: string of speakable datetime
+    """
+    fmt = '%A, %B %d'
+    dt = datetime.fromtimestamp(int(meetup_datetime)/1000)
+    return dt.strftime(fmt)
+
+
 def get_next_meetup(group_name):
     """
     Lookup the next Meetup event for a group.
@@ -37,7 +49,7 @@ def get_next_meetup(group_name):
 
     if response:
         meetup['title'] = response[0]['name']
-        meetup['date'] = response[0]['time']
+        meetup['date'] = _convert_meetup_datetime(response[0]['time'])
         meetup['venue'] = response[0]['venue']['name']
     return meetup
 

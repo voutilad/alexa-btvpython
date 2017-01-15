@@ -62,3 +62,9 @@ def test_meetup_client():
     assert 'date' in next_meetup
     assert 'venue' in next_meetup
 
+
+def test_convert_meetup_datetime():
+    input = 1484868600000
+    converted = alexa._convert_meetup_datetime(input)
+
+    assert 'Thursday, January 19' in converted
