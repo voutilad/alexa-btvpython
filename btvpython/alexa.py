@@ -3,10 +3,9 @@ Our Alexa Skill for BTVPython
 """
 from datetime import datetime
 import os
-import json
-import urllib2
+import requests
 
-MEETUP_ENDPOINT = 'https://api.meetup.com/{group}/events?sign=false&key={key}&photo-host=public&page=1'
+MEETUP_ENDPOINT = 'https://api.meetup.com/{group}/events'
 
 ASK_RESPONSE = {
     'version': 1.0,
@@ -44,13 +43,20 @@ def get_next_meetup(group_name):
     """
     meetup = {}
 
-    url = MEETUP_ENDPOINT.format(group=group_name, key=os.environ['MEETUP_API_KEY'])
-    response = json.loads(urllib2.urlopen(url).read())
+    params = {
+        'key': os.environ['MEETUP_API_KEY'],
+        'sign': False,
+        'photo-host': 'public',
+        'page': 1
+    }
+    response = requests.get(MEETUP_ENDPOINT.format(group=group_name), params=params)
 
-    if response:
-        meetup['title'] = response[0]['name']
-        meetup['date'] = _convert_meetup_datetime(response[0]['time'])
-        meetup['venue'] = response[0]['venue']['name']
+    if response.status_code == 200:
+        data = response.json()
+        if data:
+            meetup['title'] = data[0]['name']
+            meetup['date'] = _convert_meetup_datetime(data[0]['time'])
+            meetup['venue'] = data[0]['venue']['name']
     return meetup
 
 
