@@ -6,42 +6,36 @@ import json
 from mock import patch
 from dotenv import load_dotenv
 from btvpython import alexa
-
-
-SAMPLE_INTENT = """{
-  "session": {
-    "sessionId": "SessionId.fc225185-356d-4801-9974-39346304b4ca",
-    "application": {
-      "applicationId": "amzn1.ask.skill.a1422305-89ad-4b1d-a730-409ec85bcc2b"
-    },
-    "attributes": {},
-    "user": {
-      "userId": "amzn1.ask.account.AGIBATV336BLB4OXENW5CEINYOPN6E6QVSVLH5MOIBVIHJOGRJBJFIXNSETUTBJ3LMO5YLLZZDJD6YOO3YQKTEQJAKQOM2JLIG2EEHTYBCLKSNZQNHMFLPPQJZP3O7NA6YS7F4UG5QLEQQGSDI3AMAYOF6J3GIBS7EHXTNWT2JCYUFWK5TU6AAQDQ7YI3ANFAWOAQBJEHYKQDPY"
-    },
-    "new": true
-  },
-  "request": {
-    "type": "IntentRequest",
-    "requestId": "EdwRequestId.35fdb36f-6321-466e-820a-a33a8b934de2",
-    "locale": "en-US",
-    "timestamp": "2017-01-15T03:35:33Z",
-    "intent": {
-      "name": "GetNextEvent",
-      "slots": {}
-    }
-  },
-  "version": "1.0"}"""
-
+from .fixtures import new_get_event_intent, new_launch_intent
 
 
 def setup_module(module):
     load_dotenv('.env')
 
 
-def test_lambda_handler_returns_ask_json():
-    response = alexa.lambda_handler(None, None)
+def test_lambda_handler_returns_data_on_get_next_event_intent():
+    response = alexa.lambda_handler(new_get_event_intent(), None)
     assert 'response' in response
+    assert response['shouldEndSession'] is True
     assert json.dumps(response)
+
+
+def test_lambda_handler_returns_a_prompt_on_launch():
+    response = alexa.lambda_handler(new_launch_intent(), None)
+    assert 'response' in response
+    assert 'Welcome to Burlington Python' in response['response']['outputSpeech']['text']
+    assert 'get next event or cancel' in response['response']['outputSpeech']['text']
+    assert 'You can say' in response['response']['reprompt']['text']
+    assert response['shouldEndSession'] is False
+    assert json.dumps(response)
+
+
+def test_sorry_on_unknown_intent():
+    intent = new_launch_intent()
+    intent['request']['type'] = 'junk'
+    response = alexa.lambda_handler(intent, None)
+    assert "I'm sorry" in response['response']['outputSpeech']['text']
+    assert response['shouldEndSession'] is True
 
 
 def test_intent_handler():

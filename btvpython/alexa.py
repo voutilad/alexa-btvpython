@@ -84,9 +84,18 @@ def lambda_handler(event, context):
         print 'event: ' + str(event)
         print 'context: ' + str(context)
 
-
     output = ASK_RESPONSE.copy()
-    message = handle_intent()
+    if event['request']['type'] is 'LaunchIntent':
+        message = 'Welcome to Burlington Python, you can say get next event or cancel!'
+        output['shouldEndSession'] = False
+        output['response'].update({'reprompt': {'text': 'You can say get next event or cancel.'}})
+
+    elif event['request']['type'] is 'IntentRequest':
+        message = handle_intent()
+
+    else:
+        message = "I'm sorry, but I don't know how to handle your request."
+
     output['response']['outputSpeech']['text'] = message
     output['response']['card']['content'] = message
 
