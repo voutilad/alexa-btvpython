@@ -1,0 +1,10 @@
+{
+  "intents": [
+    {
+      "intent": "GetNextEvent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

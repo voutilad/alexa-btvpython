@@ -83,7 +83,11 @@ package our project for use in Lambda.
 Our skill is a little weak. Sure it gets the very next event, but you can't ask any follow-up
 questions or anything else.
 
-Let's add in another intent and change the default behavior allowing us to do more.
+Let's add in another intent and change the default behavior allowing us to do more. We'll keep it simple,
+so for now let's say we want two interaction types:
+
+* general launch via _"open burlington python"_ followed by a prompt
+* direct intent launch via _"ask burlington python for the next event"_
 
 ## Chapter 4 - A Flask Full of Fun
 

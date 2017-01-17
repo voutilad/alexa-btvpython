@@ -1,0 +1,7 @@
+GetNextEvent what is the next event
+GetNextEvent what the next event is
+GetNextEvent when is the next event
+GetNextEvent when the next event is
+GetNextEvent where is the next event
+GetNextEvent where the next event is
+GetNextEvent get the next event
