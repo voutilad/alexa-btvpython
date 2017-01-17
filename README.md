@@ -41,7 +41,7 @@ What won't we be covering at this point? A few little things for now:
 to Meetup. 
     * _See my [other project](https://github.com/voutilad/dear-leader) for an example using Twitter_
 * More complex AWS/Lambda stuff like CloudWatch
-* Deeper Alexa topics like slots
+* Deeper Alexa topics like slots, securing your skill (like using the app id)
 
 ## Git
 The project uses git _tags_ as a way to mark different walk-through states.
