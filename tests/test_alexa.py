@@ -5,6 +5,8 @@ import os
 import json
 from mock import patch
 from dotenv import load_dotenv
+
+import meetup
 from btvpython import alexa
 from .fixtures import new_get_event_intent, new_launch_intent
 
@@ -56,7 +58,7 @@ def test_no_meeting_response(mock):
 
 def test_meetup_client():
     assert 'MEETUP_API_KEY' in os.environ
-    next_meetup = alexa.get_next_meetup('btvpython')
+    next_meetup = meetup.get_next_meetup('btvpython')
     assert 'title' in next_meetup
     assert 'date' in next_meetup
     assert 'venue' in next_meetup
@@ -64,6 +66,6 @@ def test_meetup_client():
 
 def test_convert_meetup_datetime():
     input = 1484868600000
-    converted = alexa._convert_meetup_datetime(input)
+    converted = meetup._convert_meetup_datetime(input)
 
     assert 'Thursday, January 19' in converted
