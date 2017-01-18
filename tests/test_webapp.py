@@ -17,6 +17,13 @@ class TestFlaskSkill(object):
     def setup_class(cls):
         cls.app.config['TESTING'] = True
 
+    def test_redirect_on_default_get(self):
+        response = self.client.get('/', follow_redirects=False)
+        assert response.status_code == 302
+        assert response.location == 'https://github.com/voutilad/alexa-btvpython'
+
+
+
     def test_welcome_on_launch(self):
         post_data = json.dumps(new_launch_intent())
         response = self.client.post(ASK_ROUTE, data=post_data)

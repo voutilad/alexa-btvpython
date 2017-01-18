@@ -1,1 +1,1 @@
-web: gunicorn btvpython.webapp:wsgi
+web: gunicorn btvpython.wsgi
