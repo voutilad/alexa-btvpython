@@ -4,3 +4,4 @@ pytest
 mock
 flask
 flask-ask
+gunicorn
