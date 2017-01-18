@@ -6,8 +6,7 @@ import json
 from mock import patch
 from dotenv import load_dotenv
 
-import meetup
-from btvpython import alexa
+from btvpython import alexa, meetup
 from .fixtures import new_get_event_intent, new_launch_intent
 
 

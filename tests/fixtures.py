@@ -63,3 +63,9 @@ def new_get_event_intent():
         },
         "version": "1.0"
     }
+
+mock_event = {
+    'title': 'Mock Meeting',
+    'date': 'Thursday, January 19',
+    'venue': 'Miskatonic Universiy'
+}
