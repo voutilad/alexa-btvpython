@@ -1,0 +1,8 @@
+welcome: Welcome to Burlington Python! {% include 'prompt' %}
+
+prompt: You can say get next event or cancel.
+
+next_event: |
+  The next Burlington Python meetup is "{{title}}" on {{date}} at {{venue}}
+
+sorry: Sorry, I could not find an upcoming event for Burlington Python.
