@@ -55,7 +55,20 @@ I've organized this into "chapters", so each tag name follows the convention: `c
 Chapter 0 would be `ch0`, Chapter 4 would be `ch4`, etc.
 
 
-# Chapters
+# Before you Begin
+
+Create a local `.env` file that contains two things:
+* A randomly generated Flask secret key
+* A copy of your [Meetup API Key](https://secure.meetup.com/meetup_api/key/)
+
+It should look like:
+```bash
+MEETUP_API_KEY="yourApiKey"
+FLASK_SECRET_KEY="yourFlaskSecretKey"
+
+```
+
+# Working Through the Chapters!
 
 Each chapter is designed to show a working "solution" for our use case, just in increasing
 complexity and functionality. As we step through, the changes we make will highlight specific
@@ -94,6 +107,10 @@ so for now let's say we want two interaction types:
 Outgrow Lambda? Want to do things like data persistence and not stay in the AWS
 world? Let's move our logic into a more elgant Flask-based app using [Flask-Ask](https://github.com/johnwheeler/flask-ask) 
 and get it ready for deployment to Heroku!
+
+For [Heroku](https://www.heroku.com), you'll need an account. The included [Procfile](./Procfile) and
+[runtime.txt](./runtime.txt) are already provided, but you'll need to [create a new app](https://dashboard.heroku.com/new?org=personal-apps).
+
 
 ### Scratchpad
 
