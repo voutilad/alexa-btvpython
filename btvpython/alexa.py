@@ -54,8 +54,8 @@ def lambda_handler(event, context):
     :return: Alexa Response
     """
     if 'DEBUG_LAMBDA' in os.environ:
-        print 'event: ' + str(event)
-        print 'context: ' + str(context)
+        print('event: ' + str(event))
+        print('context: ' + str(context))
 
     response = _new_response()
     if event['request']['type'] == 'LaunchRequest':
@@ -74,7 +74,6 @@ def lambda_handler(event, context):
     response['response']['card']['content'] = message
 
     if 'DEBUG_LAMBDA' in os.environ:
-        print 'output: ' + str(response)
+        print('output: ' + str(response))
 
     return response
-
