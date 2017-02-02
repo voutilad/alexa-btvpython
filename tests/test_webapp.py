@@ -30,7 +30,7 @@ class TestFlaskSkill(object):
         response = self.client.post(ASK_ROUTE, data=post_data)
         assert response.status_code == 200
 
-        response_json = json.loads(response.data)
+        response_json = json.loads(response.data.decode('utf-8'))
         assert 'Welcome to Burlington Python' \
                in response_json['response']['outputSpeech']['text']
         assert 'You can say get next event or cancel' \
@@ -42,7 +42,7 @@ class TestFlaskSkill(object):
         response = self.client.post(ASK_ROUTE, data=post_data)
         assert response.status_code == 200
 
-        response_json = json.loads(response.data)
+        response_json = json.loads(response.data.decode('utf-8'))
         speech = response_json['response']['outputSpeech']['text']
         assert mock_event['title'] in speech
         assert mock_event['venue'] in speech
