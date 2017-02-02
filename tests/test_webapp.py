@@ -16,6 +16,7 @@ class TestFlaskSkill(object):
 
     def setup_class(cls):
         cls.app.config['TESTING'] = True
+        cls.app.config['ASK_VERIFY_REQUESTS'] = False
 
     def test_redirect_on_default_get(self):
         response = self.client.get('/', follow_redirects=False)
