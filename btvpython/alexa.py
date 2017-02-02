@@ -3,7 +3,7 @@ Our Alexa Skill for BTVPython
 """
 import os
 
-from meetup import get_next_meetup
+from .meetup import get_next_meetup
 
 NEXT_EVENT_INTENT = 'GetNextEvent'
 CANCEL_INTENT = 'AMAZON.CancelIntent'
