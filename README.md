@@ -1,13 +1,15 @@
 # BTVPython Alexa Skill
 
+[![Build Status](https://travis-ci.org/voutilad/alexa-btvpython.svg?branch=master)](https://travis-ci.org/voutilad/alexa-btvpython)
+
 This is a sample project for presenting a "How To" related to developing custom
-[Amazon Alexa Skills](https://developer.amazon.com/alexa-skills-kit) using Python 
+[Amazon Alexa Skills](https://developer.amazon.com/alexa-skills-kit) using Python
 and [Amazon Lambda](https://aws.amazon.com/lambda/).
 
 ## Background Story
 
 Let's say you want to build an Alexa skill that does something interesting like help you
-get the details on the next, upcoming 
+get the details on the next, upcoming
 [Burlington Python Meetup](https://www.meetup.com/btvpython/) event. Where do you begin?
 
 ## Assumptions
@@ -37,8 +39,8 @@ package ([tests](./tests))
 If you're not familiar with the above, I recommend following the links to learn a bit more.
 
 What won't we be covering at this point? A few little things for now:
-* Using OAuth(1/2) for more [account linking](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system) 
-to Meetup. 
+* Using OAuth(1/2) for more [account linking](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system)
+to Meetup.
     * _See my [other project](https://github.com/voutilad/dear-leader) for an example using Twitter_
 * More complex AWS/Lambda stuff like CloudWatch
 * Deeper Alexa topics like slots, securing your skill (like using the app id)
@@ -86,9 +88,9 @@ from the [Meetup API](https://www.meetup.com/meetup_api/docs/).
 
 ## Chapter 2 - Lambda using Packages
 
-Lambda's nice and all, but up until now we've put all our code in one Python module that only 
-has access to the Python 2.7 standard library. Let's bring in the popular 
-[requests](http://docs.python-requests.org/en/master/#) library and figure out how we 
+Lambda's nice and all, but up until now we've put all our code in one Python module that only
+has access to the Python 2.7 standard library. Let's bring in the popular
+[requests](http://docs.python-requests.org/en/master/#) library and figure out how we
 package our project for use in Lambda.
 
 ## Chapter 3 - A Voice User Interface
@@ -105,7 +107,7 @@ so for now let's say we want two interaction types:
 ## Chapter 4 - A Flask Full of Fun
 
 Outgrow Lambda? Want to do things like data persistence and not stay in the AWS
-world? Let's move our logic into a more elgant Flask-based app using [Flask-Ask](https://github.com/johnwheeler/flask-ask) 
+world? Let's move our logic into a more elgant Flask-based app using [Flask-Ask](https://github.com/johnwheeler/flask-ask)
 and get it ready for deployment to Heroku!
 
 For [Heroku](https://www.heroku.com), you'll need an account. The included [Procfile](./Procfile) and
